@@ -27,7 +27,7 @@ class SynchronizedDatabase(PersistentDatabase):
         if self.active_readers == 0:
             win32event.ReleaseMutex(self.write_mutex)
         win32event.ReleaseMutex(self.read_count_mutex)
-        win32event.ReleaseSemaphore(self.read_semaphore, 1, None)
+        win32event.ReleaseSemaphore(self.read_semaphore, 1)
 
     def acquire_write(self):
         win32event.WaitForSingleObject(self.write_mutex, win32event.INFINITE)
@@ -38,24 +38,21 @@ class SynchronizedDatabase(PersistentDatabase):
     def set_value(self, key, value):
         self.acquire_write()
         try:
-            self.data[key] = value
-            self.save_data()
+            return super().get_value(key)
         finally:
             self.release_write()
 
     def get_value(self, key):
         self.acquire_read()
         try:
-            return self.data.get(key, None)
+            return super().get_value(key)
         finally:
             self.release_read()
 
     def delete_value(self, key):
         self.acquire_write()
         try:
-            if key in self.data:
-                del self.data[key]
-                self.save_data()
+            super().delete_value(key)
         finally:
             self.release_write()
 

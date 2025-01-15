@@ -1,9 +1,9 @@
 """
 Author: Ido Karadi
-Project name: DB Distributed
-Description: Part of the DB Distributed program.
+Project name: DB API
+Description: Part of the DB API program.
 This file includes the Database class.
-Date: 26/11/24
+Date: 15/1/25
 """
 
 

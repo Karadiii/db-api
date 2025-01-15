@@ -1,9 +1,9 @@
 """
 Author: Ido Karadi
-Project name: DB Distributed
-Description: Test file for a synchronized database program with multiple set rules.
+Project name: DB API
+Description: Test file for a synchronized database program with multiple set rules using WinAPI.
 This file runs the tests that ensure the program is working as intended.
-Date: 26/11/24
+Date: 15/1/25
 """
 
 
